@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="lit.de.vkanect">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Vkanect">
+        <activity
+            android:name=".faculty.manageCollage.ManageCollage"
+            android:exported="false"
+            android:label="@string/title_activity_manage_collage"
+            android:theme="@style/Theme.Vkanect.NoActionBar" />
+        <activity
+            android:name=".spash"
+            android:theme="@style/Theme.Vkanect.NoAcc">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".faculty.faculty_activity" />
+        <activity android:name=".student.student_activity" />
+        <activity android:name=".MainActivity" />
+    </application>
+
+</manifest>

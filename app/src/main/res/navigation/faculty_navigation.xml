@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/faculty_navigation"
+    app:startDestination="@id/faculty_homeFragment">
+
+    <fragment
+        android:id="@+id/faculty_homeFragment"
+        android:name="lit.de.vkanect.faculty.frag.F_HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/faculty_fragment_home" />
+    <fragment
+        android:id="@+id/faculty_chatFragment"
+        android:name="lit.de.vkanect.faculty.frag.F_ChatFragment"
+        android:label="Chat"
+        tools:layout="@layout/faculty_fragment_chat" />
+    <fragment
+        android:id="@+id/faculty_workFragment"
+        android:name="lit.de.vkanect.faculty.frag.F_WorkFragment"
+        android:label="Work"
+        tools:layout="@layout/faculty_fragment_work" />
+    <fragment
+        android:id="@+id/faculty_noticeFragment"
+        android:name="lit.de.vkanect.faculty.frag.F_NoticeFragment"
+        android:label="Notice"
+        tools:layout="@layout/faculty_fragment_notice" />
+    <fragment
+        android:id="@+id/faculty_userFragment"
+        android:name="lit.de.vkanect.faculty.frag.F_UserFragment"
+        android:label="User"
+        tools:layout="@layout/faculty_fragment_user" />
+</navigation>

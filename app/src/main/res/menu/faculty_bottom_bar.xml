@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <item
+        android:id="@+id/faculty_homeFragment"
+        android:icon="@drawable/ic_home_work"
+        android:title="Home"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/faculty_chatFragment"
+        android:icon="@drawable/ic_chat"
+        app:showAsAction="always"
+        android:title="Chat" />
+    <item
+        android:id="@+id/faculty_workFragment"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_book"
+        android:title="Work" />
+    <item
+        android:id="@+id/faculty_noticeFragment"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_notifications"
+        android:title="Notice" />
+    <item
+        android:id="@+id/faculty_userFragment"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_user"
+        android:title="User" />
+</menu>

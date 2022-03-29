@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home_work"
+        android:title="Home"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/chatFragment"
+        android:icon="@drawable/ic_chat"
+        app:showAsAction="always"
+        android:title="Chat" />
+<!--    <item-->
+<!--        android:id="@+id/blank"-->
+<!--        app:showAsAction="always"-->
+<!--        android:icon="@drawable/popup_bg"-->
+<!--        android:title="" />-->
+    <item
+        android:id="@+id/workFragment"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_book"
+        android:title="Work" />
+    <item
+        android:id="@+id/noticeFragment"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_notifications"
+        android:title="Notice" />
+    <item
+        android:id="@+id/userFragment"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_user"
+        android:title="User" />
+</menu>

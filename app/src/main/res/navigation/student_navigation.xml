@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/student_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="lit.de.vkanect.student.frag.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="lit.de.vkanect.student.frag.ChatFragment"
+        android:label="Chat"
+        tools:layout="@layout/fragment_chat" />
+    <fragment
+        android:id="@+id/workFragment"
+        android:name="lit.de.vkanect.student.frag.WorkFragment"
+        android:label="Work"
+        tools:layout="@layout/fragment_work" />
+    <fragment
+        android:id="@+id/noticeFragment"
+        android:name="lit.de.vkanect.student.frag.NoticeFragment"
+        android:label="Notice"
+        tools:layout="@layout/fragment_notice" />
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="lit.de.vkanect.student.frag.UserFragment"
+        android:label="User"
+        tools:layout="@layout/fragment_user" />
+</navigation>

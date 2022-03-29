@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/stud_user"
+    tools:context=".student.frag.UserFragment">
+
+    <ScrollView
+        android:id="@+id/user_option_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:visibility="visible">
+
+
+        <LinearLayout
+            android:id="@+id/user_main_page_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <Button
+                android:id="@+id/user_info"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_user"
+                android:drawableTint="@color/teal_700"
+                android:padding="20dp"
+                android:text="user"
+                android:textColor="@color/teal_700" />
+
+            <Button
+                android:id="@+id/manage_collage"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_add_collage"
+                android:drawableTint="@color/teal_700"
+                android:padding="20dp"
+                android:text="Manage Collage"
+                android:textColor="@color/teal_700" />
+
+            <Button
+                android:id="@+id/app_settigs"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_twotone_settings_24"
+                android:drawableTint="@color/teal_700"
+                android:padding="20dp"
+                android:text="Settings"
+                android:textColor="@color/teal_700" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_gravity="top"
+        android:visibility="gone"
+        android:id="@+id/user_section_top_bar"
+        android:layout_height="wrap_content">
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:id="@+id/back_top_bar"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            app:icon="@drawable/ic_arrow_back"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/user_info_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_margin="50dp"
+            android:textSize="20dp"
+            android:text="Loading..."
+            android:id="@+id/userDataTxt" />
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:padding="20dp"
+            android:id="@+id/logOut"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/make_institute_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="17dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginBottom="9dp"
+            android:text="Input Institude code here :" />
+
+        <EditText
+            android:id="@+id/join_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="#516A6A6A"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:padding="20dp"
+            android:text=""
+            android:tooltipText="CODE" />
+
+        <Button
+            android:id="@+id/ijoin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:padding="20dp"
+            android:text="Join" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/manage_institute_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="17dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/disp_collage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginBottom="9dp"
+            android:text="You are in "
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/ijoin_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:padding="20dp"
+            android:text="Exit" />
+
+    </LinearLayout>
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="right"-->
+<!--        android:orientation="horizontal">-->
+<!--        <Button-->
+<!--            android:id="@+id/manage_collage"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:drawableTint="@color/teal_700"-->
+<!--            android:textColor="@color/teal_700"-->
+<!--            style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--            android:text="Manage"-->
+<!--            android:drawableLeft="@drawable/ic_add_collage"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/user_info"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:drawableTint="@color/teal_700"-->
+<!--            android:textColor="@color/teal_700"-->
+<!--            style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--            android:text="user"-->
+<!--            android:drawableLeft="@drawable/ic_user"/>-->
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/app_settigs"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:backgroundTint="#00FFFFFF"-->
+<!--            app:tint="@color/teal_700"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:src="@drawable/ic_twotone_settings_24" />-->
+
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/user_info_layout"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_gravity="center">-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="10dp"-->
+<!--            android:layout_margin="50dp"-->
+<!--            android:textSize="20dp"-->
+<!--            android:text="Loading..."-->
+<!--            android:id="@+id/userDataTxt" />-->
+<!--        <Button-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Log Out"-->
+<!--            android:padding="20dp"-->
+<!--            android:id="@+id/logOut"/>-->
+<!--    </LinearLayout>-->
+
+</FrameLayout>
