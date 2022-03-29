@@ -46,30 +46,27 @@ public class ManageCollage extends AppCompatActivity {
         Button make_institute = (Button)findViewById(R.id.make_institute );
         EditText collage_name_box = (EditText)findViewById(R.id.collage_name_box);
 
-        FirebaseFirestore.getInstance().collection("institutes").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task){
-                if (task.isSuccessful()){
-                    List<Institute> list = new ArrayList<>();
-                    for (QueryDocumentSnapshot document : task.getResult()){
-                        list.add(document.toObject(Institute.class));
-                        //Log.d("TAG", document.toString());
-                    }
-                    for(Institute data : list){
-                        if(data.owner.equals(user.getUid())) {
-                            Log.d("TAG",data.id);
-                            institute = data;
-                            intitude_code.setText("Your intitude code : "+institute.getId());
-                            intitude_code.setVisibility(View.VISIBLE);
-                            make_institute.setEnabled(false);
-                            collage_name_box.setVisibility(View.GONE);
-                            make_institute.setVisibility(View.GONE);
-                        }
-                    }
-                    //Log.d("TAG", list.toString());
-                } else {
-                    Log.d("TAG", "Error getting documents: ", task.getException());
+        FirebaseFirestore.getInstance().collection("institutes").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()){
+                List<Institute> list = new ArrayList<>();
+                for (QueryDocumentSnapshot document : task.getResult()){
+                    list.add(document.toObject(Institute.class));
+                    //Log.d("TAG", document.toString());
                 }
+                for(Institute data : list){
+                    if(data.owner.equals(user.getUid())) {
+                        Log.d("TAG",data.id);
+                        institute = data;
+                        intitude_code.setText("Your intitude code : "+institute.getId());
+                        intitude_code.setVisibility(View.VISIBLE);
+                        make_institute.setEnabled(false);
+                        collage_name_box.setVisibility(View.GONE);
+                        make_institute.setVisibility(View.GONE);
+                    }
+                }
+                //Log.d("TAG", list.toString());
+            } else {
+                Log.d("TAG", "Error getting documents: ", task.getException());
             }
         });
 
