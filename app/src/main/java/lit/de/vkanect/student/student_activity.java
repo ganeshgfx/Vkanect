@@ -1,5 +1,7 @@
 package lit.de.vkanect.student;
 
+import static lit.de.vkanect.data.CONSTANTS.Firebase.STUD_getInstitude;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -21,6 +23,7 @@ import lit.de.vkanect.R;
 
 public class student_activity extends AppCompatActivity {
 
+    private static final String TAG = "VKT";
     BottomNavigationView stud_bottomNavigationView;
     NavController stud_navController;
 
@@ -51,6 +54,12 @@ public class student_activity extends AppCompatActivity {
         //NavController navController = Navigation.findNavController(this, R.id.stud_fragmentContainerView);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+       try {
+           STUD_getInstitude();
+       }catch (Exception e){
+           Log.d(TAG, " Error at :  STUD_getInstitude();");
+       }
 
         getSupportActionBar().hide();
     }

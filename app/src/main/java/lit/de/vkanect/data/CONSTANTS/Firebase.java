@@ -26,13 +26,15 @@ import lit.de.vkanect.data.Institute;
 public class Firebase {
     private final static String LOC = "https://vkanect" +
             "-default-rtdb.asia-southeast1.firebasedatabase.app/";
-    private static final String TAG = "VKT";
+    public static final String TAG = "VKT";
     public static FirebaseUser USER = FirebaseAuth.getInstance().getCurrentUser();
     public static FirebaseUser USER_ME(){
         return FirebaseAuth.getInstance().getCurrentUser();
     }
 
+
     public static Institute institute;
+    public static Institute studInstitute;
 
     public static DatabaseReference databaseReference = FirebaseDatabase.getInstance(LOC).getReference();
     public static DatabaseReference instituteDB = FirebaseDatabase.getInstance(LOC).getReference().child("institutes");
@@ -53,6 +55,28 @@ public class Firebase {
                             break;
                         }
                     }catch (Exception e){};
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    public static void STUD_getInstitude(){
+        instituteDB.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //Log.d(TAG, "onDataChange: "+snapshot.getValue());
+                for (DataSnapshot ss:snapshot.getChildren()) {
+
+                    studInstitute = ss.child("instituteData").getValue(Institute.class);
+
+                    if(studInstitute.owner.equals(Firebase.USER.getUid())){
+                        break;
+                    }
 
                 }
             }

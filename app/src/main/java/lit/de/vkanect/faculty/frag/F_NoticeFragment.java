@@ -1,6 +1,7 @@
 package lit.de.vkanect.faculty.frag;
 
 import static lit.de.vkanect.data.CONSTANTS.Firebase.FAC_getInstitude;
+import static lit.de.vkanect.data.CONSTANTS.Firebase.institute;
 
 import android.os.Bundle;
 
@@ -17,11 +18,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import lit.de.vkanect.R;
 import lit.de.vkanect.data.CONSTANTS.Firebase;
+import lit.de.vkanect.data.Massage;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -85,9 +88,12 @@ public class F_NoticeFragment extends Fragment {
         EditText fac_notice_text = (EditText) rootView.findViewById(R.id.fac_notice_text);
 
         fac_notice_send.setOnClickListener(V->{
+
             //Log.d(TAG, "Send notice : "+fac_notice_text.getText());
             String text = fac_notice_text.getText().toString();
-            Firebase.instituteDB.child("notice").push().setValue(text);
+
+            Firebase.instituteDB.child(institute.getId()).child("notice").push().setValue(new Massage(text, FirebaseAuth.getInstance().getUid(),Massage.TYPE_NOTICE));
+
         });
         return rootView;
     }

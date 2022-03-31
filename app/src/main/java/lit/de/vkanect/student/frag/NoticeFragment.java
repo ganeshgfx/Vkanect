@@ -1,14 +1,41 @@
 package lit.de.vkanect.student.frag;
 
+import static lit.de.vkanect.data.CONSTANTS.Firebase.STUD_getInstitude;
+import static lit.de.vkanect.data.CONSTANTS.Firebase.TAG;
+import static lit.de.vkanect.data.CONSTANTS.Firebase.institute;
+import static lit.de.vkanect.data.CONSTANTS.Firebase.instituteDB;
+import static lit.de.vkanect.data.CONSTANTS.Firebase.studInstitute;
+
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import lit.de.vkanect.R;
+import lit.de.vkanect.data.Institute;
+import lit.de.vkanect.data.Massage;
+import lit.de.vkanect.student.frag.notice.MovieModel;
+import lit.de.vkanect.student.frag.notice.MoviesAdapter;
+import lit.de.vkanect.student.frag.notice.NoticeAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,11 +83,97 @@ public class NoticeFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    Institute mInstitute;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notice, container, false);
+        View root = inflater.inflate(R.layout.fragment_notice, container, false);
+        //noticeText = (TextView) root.findViewById(R.id.noticeText);
+        RecyclerView recyclerView = root.findViewById(R.id.noticeRecycleView);
+        mAdapter = new MoviesAdapter(movieList);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mAdapter);
+
+
+        loadInstitute();
+        //Log.d(TAG, "onCreateView: "+studInstitute.toString());
+
+        return root;
+    }
+    void loadInstitute(){
+        try {
+            STUD_getInstitude();
+            mInstitute = studInstitute;
+          //  Log.d(TAG, "loadInstitute: Loaded");
+            loadNotices();
+
+        }catch (Exception e){
+
+            Toast.makeText(getContext(), "Loading...", Toast.LENGTH_SHORT).show();
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // Do something after 5s = 5000ms
+                    loadInstitute();
+                }
+            }, 1000);
+
+        }
+    }
+
+    void loadNotices(){
+        instituteDB.child(mInstitute.getId()).child("notice").addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                //Log.d(TAG, "onDataChange: "+snapshot.toString());
+
+                List<Massage> list = new ArrayList<>();
+
+                movieList.clear();
+
+                for (DataSnapshot data:snapshot.getChildren()) {
+
+                    Massage massage = data.getValue(Massage.class);
+                    list.add(massage);
+
+
+
+
+                    movieList.add(new MovieModel(massage.text, "by sir xyx", "Notice"));
+
+
+
+                }
+                mAdapter.notifyDataSetChanged();
+                //prepareMovieData();
+                //if(list!=null){
+
+               // }
+                //noticeText.setText(not);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    private List<MovieModel> movieList = new ArrayList<>();
+    private MoviesAdapter mAdapter;
+    private void prepareMovieData() {
+        MovieModel movie = new MovieModel("Mad Max: Fury Road", "Action & Adventure", "2015");
+        movieList.add(movie);
+        movie = new MovieModel("Inside Out", "Animation, Kids & Family", "2015");
+        movieList.add(movie);
+
+        mAdapter.notifyDataSetChanged();
     }
 }
