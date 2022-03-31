@@ -28,4 +28,13 @@ public class Institute {
         this.name = name;
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Institute{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", owner='" + owner + '\'' +
+                '}';
+    }
 }

@@ -9,6 +9,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -21,6 +23,11 @@ import lit.de.vkanect.data.Institute;
 public class Firebase {
     public static FirebaseUser USER = FirebaseAuth.getInstance().getCurrentUser();
     public static Institute institute;
+
+    public static DatabaseReference instituteDB = FirebaseDatabase.getInstance("https://vkanect" +
+            "-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child(
+                    "institutes");
+
     public static void FAC_getInstitude(){
         FirebaseFirestore.getInstance().collection("institutes").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
