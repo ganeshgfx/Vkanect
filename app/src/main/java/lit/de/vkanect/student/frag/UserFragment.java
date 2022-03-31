@@ -37,6 +37,8 @@ import lit.de.vkanect.R;
 import lit.de.vkanect.data.Institute;
 import lit.de.vkanect.data.User;
 import lit.de.vkanect.faculty.faculty_activity;
+import lit.de.vkanect.faculty.manageCollage.ManageCollage;
+import lit.de.vkanect.student.frag.handleCollage.HandleCollage;
 import lit.de.vkanect.student.student_activity;
 
 /**
@@ -119,17 +121,19 @@ public class UserFragment extends Fragment {
         TextView disp_collage = (TextView)rootView.findViewById(R.id.disp_collage);
         Button manage_collage = (Button)rootView.findViewById(R.id.manage_collage);
         manage_collage.setOnClickListener(v ->{
-            BackForth(View.VISIBLE,View.GONE);
-            if(collID.equals("")){
-                rootView.
-                        findViewById(R.id.make_institute_layout)
-                        .setVisibility(View.VISIBLE);
-            }else{
-                disp_collage.setText(disp_collage.getText().toString()+" : "+collID);
-                rootView.
-                        findViewById(R.id.manage_institute_layout)
-                        .setVisibility(View.VISIBLE);
-            }
+
+            startActivity(new Intent(getActivity(), HandleCollage.class));
+//            BackForth(View.VISIBLE,View.GONE);
+//            if(collID.equals("")){
+//                rootView.
+//                        findViewById(R.id.make_institute_layout)
+//                        .setVisibility(View.VISIBLE);
+//            }else{
+//                disp_collage.setText(disp_collage.getText().toString()+" : "+collID);
+//                rootView.
+//                        findViewById(R.id.manage_institute_layout)
+//                        .setVisibility(View.VISIBLE);
+//            }
         });
         EditText join_code = (EditText)rootView.findViewById(R.id.join_code);
         Button ijoin = (Button)rootView.findViewById(R.id.ijoin);
@@ -178,29 +182,29 @@ public class UserFragment extends Fragment {
             });
         });
 
-        FirebaseFirestore.getInstance().collection("users")
-                .document(user.getUid())
-                .collection("myCollage")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()){
-                            if(task.getResult().size() > 0) {
-                                for (DocumentSnapshot document : task.getResult()) {
-                                    collID = document.getId();
-                                    //Log.d("TAG", "Room already exists, start the chat");
-                                    //Log.d("TAG", ""+document.getId());
-                                }
-                            } else {
-                                Log.d("TAG", "room doesn't exist create a new room");
-
-                            }
-                        } else {
-                            Log.d("TAG", "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
+//        FirebaseFirestore.getInstance().collection("users")
+//                .document(user.getUid())
+//                .collection("myCollage")
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()){
+//                            if(task.getResult().size() > 0) {
+//                                for (DocumentSnapshot document : task.getResult()) {
+//                                    collID = document.getId();
+//                                    //Log.d("TAG", "Room already exists, start the chat");
+//                                    //Log.d("TAG", ""+document.getId());
+//                                }
+//                            } else {
+//                                Log.d("TAG", "room doesn't exist create a new room");
+//
+//                            }
+//                        } else {
+//                            Log.d("TAG", "Error getting documents: ", task.getException());
+//                        }
+//                    }
+//                });
 
 //        CollectionReference loc = FirebaseFirestore.getInstance()
 //                .collection("users")

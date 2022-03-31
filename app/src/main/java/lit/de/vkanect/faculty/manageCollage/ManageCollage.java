@@ -12,24 +12,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import lit.de.vkanect.R;
@@ -41,7 +32,7 @@ public class ManageCollage extends AppCompatActivity {
     FirebaseUser user;
     FirebaseFirestore db;
 
-    Institute institute;
+    Institute mInstitute;
 
     String TAG = "VKT";
 
@@ -88,10 +79,10 @@ public class ManageCollage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Log.d(TAG, "onDataChange: "+snapshot.getValue());
                 for (DataSnapshot ss:snapshot.getChildren()) {
-                    institute = ss.child("instituteData").getValue(Institute.class);
+                    mInstitute = ss.child("instituteData").getValue(Institute.class);
 
-                    if(institute.owner.equals(Firebase.USER.getUid())){
-                        intitude_code.setText("Your intitude code : "+institute.getId());
+                    if(mInstitute.owner.equals(Firebase.USER.getUid())){
+                        intitude_code.setText("Your intitude code : "+ mInstitute.getId());
                         intitude_code.setVisibility(View.VISIBLE);
                         make_institute.setEnabled(false);
                         collage_name_box.setVisibility(View.GONE);
@@ -111,7 +102,7 @@ public class ManageCollage extends AppCompatActivity {
         intitude_code.setOnClickListener(view -> {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, institute.getId());
+            sendIntent.putExtra(Intent.EXTRA_TEXT, mInstitute.getId());
             sendIntent.setType("text/plain");
 
             Intent shareIntent = Intent.createChooser(sendIntent, null);
@@ -123,11 +114,12 @@ public class ManageCollage extends AppCompatActivity {
             String collage_name_box_str = collage_name_box.getText().toString();
 
             if (!collage_name_box_str.isEmpty()) {
-                institute = new Institute(user.getUid(), getSaltString(), collage_name_box_str);
+                mInstitute = new Institute(user.getUid(), getSaltString(), collage_name_box_str);
 
 
 
-                intitude_code.setText("Your institute code : " + institute.getId());
+
+                intitude_code.setText("Your institute code : " + mInstitute.getId());
 
                 //Log.d(TAG, collage_name_box_str);
 
@@ -138,24 +130,25 @@ public class ManageCollage extends AppCompatActivity {
                         boolean created = false;
 
                         for (DataSnapshot ss:snapshot.getChildren()) {
-                            institute = ss.child("instituteData").getValue(Institute.class);
-                            Log.d(TAG, "onDataChange: "+institute.owner);
-                            if(institute.owner.equals(Firebase.USER.getUid()))
+                            Institute nstitute = ss.child("instituteData").getValue(Institute.class);
+                            Log.d(TAG, "onDataChange: "+ nstitute.owner);
+                            if(nstitute.owner.equals(Firebase.USER.getUid())){
                                 created=true;
+                            }
                         }
 
-                        if (snapshot.getValue() == null && !created)
-
-                            instituteDB.child(institute.id).child("instituteData").setValue(institute)
+                        if (!created)
+                            instituteDB.child(mInstitute.id).child("instituteData").setValue(mInstitute)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
-                                            //Log.d(TAG, "onSuccess: institude created");
+                                           // Log.d(TAG, "onDataChange: "+mInstitute.id);
+                                            Log.d(TAG, "onSuccess: institude created");
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    //Log.d(TAG, "onFailure: institude not crrated");
+                                    Log.d(TAG, "onFailure: institude not crrated");
                                 }
                             });
                     }

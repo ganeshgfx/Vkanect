@@ -9,8 +9,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -21,33 +24,42 @@ import java.util.List;
 import lit.de.vkanect.data.Institute;
 
 public class Firebase {
+    private final static String LOC = "https://vkanect" +
+            "-default-rtdb.asia-southeast1.firebasedatabase.app/";
+    private static final String TAG = "VKT";
     public static FirebaseUser USER = FirebaseAuth.getInstance().getCurrentUser();
+    public static FirebaseUser USER_ME(){
+        return FirebaseAuth.getInstance().getCurrentUser();
+    }
+
     public static Institute institute;
 
-    public static DatabaseReference instituteDB = FirebaseDatabase.getInstance("https://vkanect" +
-            "-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child(
-                    "institutes");
+    public static DatabaseReference databaseReference = FirebaseDatabase.getInstance(LOC).getReference();
+    public static DatabaseReference instituteDB = FirebaseDatabase.getInstance(LOC).getReference().child("institutes");
+    public static DatabaseReference instituteStudentsDB = FirebaseDatabase.getInstance(LOC).getReference().child("students");
 
     public static void FAC_getInstitude(){
-        FirebaseFirestore.getInstance().collection("institutes").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        instituteDB.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task){
-                if (task.isSuccessful()){
-                    List<Institute> list = new ArrayList<>();
-                    for (QueryDocumentSnapshot document : task.getResult()){
-                        list.add(document.toObject(Institute.class));
-                        //Log.d("TAG", document.toString());
-                    }
-                    for(Institute data : list){
-                        if(data.owner.equals(USER.getUid())) {
-                            Log.d("TAG",data.id);
-                            institute = data;
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+               // Log.d(TAG, "onDataChange: "+snapshot.getValue());
+                for (DataSnapshot ss:snapshot.getChildren()) {
+
+                    //Log.d(TAG, "onDataChange: "+ss.getValue());
+                    Institute is = ss.child("instituteData").getValue(Institute.class);
+                    try {
+                        if(is.owner.equals(Firebase.USER.getUid())){
+                            institute = is;
+                            break;
                         }
-                    }
-                    //Log.d("TAG", list.toString());
-                } else {
-                    Log.d("TAG", "Error getting documents: ", task.getException());
+                    }catch (Exception e){};
+
                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }

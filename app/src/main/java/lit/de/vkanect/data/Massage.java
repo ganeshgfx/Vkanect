@@ -1,16 +1,18 @@
 package lit.de.vkanect.data;
 
-public class Notice {
+public class Massage {
     public String text;
     public String link;
-    public Notice(String text,String link){
+    public String channel;
+    public String sender;
+    public Massage(String text, String link){
         this.link = link;
         this.text = text;
     }
-    public Notice(String text){
+    public Massage(String text){
         this.text = text;
     }
-    public Notice(){
+    public Massage(){
 
     }
 }
