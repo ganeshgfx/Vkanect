@@ -1,5 +1,8 @@
 package lit.de.vkanect.student.frag.notice;
 
+import static lit.de.vkanect.data.CONSTANTS.Firebase.TAG;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,20 +12,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import lit.de.vkanect.R;
+import lit.de.vkanect.data.Massage;
 
-public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHolder> {
-    private List<MovieModel> moviesList;
+public class NoticeBoardAdapter extends RecyclerView.Adapter<NoticeBoardAdapter.MyViewHolder> {
+    private List<Massage> list;
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView title, year, genre;
+        TextView text;
         MyViewHolder(View view) {
             super(view);
-            title = view.findViewById(R.id.title);
-            genre = view.findViewById(R.id.genre);
-            year = view.findViewById(R.id.year);
+            text = view.findViewById(R.id.message_text);
         }
     }
-    public MoviesAdapter(List<MovieModel> moviesList) {
-        this.moviesList = moviesList;
+    public NoticeBoardAdapter(List<Massage> moviesList) {
+        this.list = moviesList;
+        Log.d(TAG, "MoviesAdapter: "+this.list.toString());
     }
     @NonNull
     @Override
@@ -33,13 +36,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
     }
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        MovieModel movie = moviesList.get(position);
-        holder.title.setText(movie.getTitle());
-        holder.genre.setText(movie.getGenre());
-        holder.year.setText(movie.getYear());
+        Massage msg = list.get(position);
+        holder.text.setText(msg.text);
     }
     @Override
     public int getItemCount() {
-        return moviesList.size();
+        return list.size();
     }
 }
