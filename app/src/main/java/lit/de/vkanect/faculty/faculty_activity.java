@@ -20,6 +20,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.jetbrains.annotations.NotNull;
 
 import lit.de.vkanect.R;
+import lit.de.vkanect.data.CONSTANTS.Firebase;
 
 public class faculty_activity extends AppCompatActivity {
 
@@ -29,6 +30,8 @@ public class faculty_activity extends AppCompatActivity {
         setContentView(R.layout.activity_faculty);
 
         //Log.d("TAG", "FAC");
+
+        Firebase.FACULTY = true;
 
         BottomNavigationView navView = findViewById(R.id.fac_bottomNavigationView);
 

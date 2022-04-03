@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,9 +91,6 @@ public class NoticeFragment extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-
-
-
         loadInstitute();
         //Log.d(TAG, "onCreateView: "+studInstitute.toString());
 
@@ -107,7 +105,10 @@ public class NoticeFragment extends Fragment {
 
         }catch (Exception e){
 
-            Toast.makeText(getContext(), "Loading...", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(getContext(), "Loading...", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -115,7 +116,7 @@ public class NoticeFragment extends Fragment {
                     // Do something after 5s = 5000ms
                     loadInstitute();
                 }
-            }, 1000);
+            }, 2500);
 
         }
     }
@@ -136,23 +137,11 @@ public class NoticeFragment extends Fragment {
 
                     Massage massage = data.getValue(Massage.class);
                     list.add(massage);
-
-
-
-
                     movieList.add(massage);
-
-
-
 
                 }
                 mAdapter = new NoticeBoardAdapter(movieList);
                 recyclerView.setAdapter(mAdapter);
-                //prepareMovieData();
-                //if(list!=null){
-
-               // }
-                //noticeText.setText(not);
 
             }
 

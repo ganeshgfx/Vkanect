@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/stud_notice"
+
     tools:context=".student.frag.NoticeFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -13,7 +14,11 @@
         android:id="@+id/noticeRecycleView"
 
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+
+        android:paddingBottom="20dp"
+        android:layout_marginBottom="80dp"
+        />
 
 
 

@@ -44,14 +44,31 @@ public class HandleCollage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 if(snapshot.getValue()!=null){
-                    LinearLayout make_institute_layout = findViewById(R.id.make_institute_layout);
-                    make_institute_layout.setVisibility(View.GONE);
-                   // Log.d(TAG, "onDataChange: "+snapshot.getValue());
-                    LinearLayout linearLayout = findViewById(R.id.show_institute_layout);
-                    linearLayout.setVisibility(View.VISIBLE);
 
-                    TextView textView = findViewById(R.id.myInstitute);
-                    textView.setText("Your institute code is "+snapshot.getValue()+"");
+                    instituteDB.child(snapshot.getValue()+"").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot s) {
+
+                            //Log.d(TAG, "onDataChange: "+snapshot.getValue());
+
+                            if(s.getValue()!=null){
+                                LinearLayout make_institute_layout = findViewById(R.id.make_institute_layout);
+                                make_institute_layout.setVisibility(View.GONE);
+                                LinearLayout linearLayout = findViewById(R.id.show_institute_layout);
+                                linearLayout.setVisibility(View.VISIBLE);
+
+                                TextView textView = findViewById(R.id.myInstitute);
+                                textView.setText("Your institute code is "+snapshot.getValue()+"");
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
 
 
                 }

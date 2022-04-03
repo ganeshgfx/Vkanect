@@ -28,7 +28,8 @@ public class Firebase {
             "-default-rtdb.asia-southeast1.firebasedatabase.app/";
     public static final String TAG = "VKT";
     public static FirebaseUser USER = FirebaseAuth.getInstance().getCurrentUser();
-    public static FirebaseUser USER_ME(){
+
+    public static FirebaseUser USER_ME() {
         return FirebaseAuth.getInstance().getCurrentUser();
     }
 
@@ -36,27 +37,58 @@ public class Firebase {
     public static Institute institute;
     public static Institute studInstitute;
 
+    public static boolean FACULTY = false;
+
     public static DatabaseReference databaseReference = FirebaseDatabase.getInstance(LOC).getReference();
     public static DatabaseReference instituteDB = FirebaseDatabase.getInstance(LOC).getReference().child("institutes");
     public static DatabaseReference instituteStudentsDB = FirebaseDatabase.getInstance(LOC).getReference().child("students");
 
-    public static void FAC_getInstitude(){
+    public static void FAC_getInstitude() {
         instituteDB.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-               // Log.d(TAG, "onDataChange: "+snapshot.getValue());
-                for (DataSnapshot ss:snapshot.getChildren()) {
+                // Log.d(TAG, "onDataChange: "+snapshot.getValue());
+                for (DataSnapshot ss : snapshot.getChildren()) {
 
                     //Log.d(TAG, "onDataChange: "+ss.getValue());
                     Institute is = ss.child("instituteData").getValue(Institute.class);
                     try {
-                        if(is.owner.equals(Firebase.USER.getUid())){
+                        if (is.owner.equals(Firebase.USER.getUid())) {
                             institute = is;
                             break;
                         }
-                    }catch (Exception e){};
+                    } catch (Exception e) {
+                    }
+                    ;
 
                 }
+                ValueEventListener listenerForSubFAC = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        if (snapshot.getValue() != null)
+
+                            instituteDB.child(snapshot.getValue() + "").addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot s) {
+                                    if (s.getValue() != null)
+                                        institute = s.child("instituteData").getValue(Institute.class);
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.d(TAG, "onDataChange: " + error.getMessage());
+                    }
+                };
+                databaseReference.child("Faculty").child(USER.getUid()).child("institute").addValueEventListener(listenerForSubFAC);
             }
 
             @Override
@@ -65,16 +97,17 @@ public class Firebase {
             }
         });
     }
-    public static void STUD_getInstitude(){
+
+    public static void STUD_getInstitude() {
         instituteDB.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Log.d(TAG, "onDataChange: "+snapshot.getValue());
-                for (DataSnapshot ss:snapshot.getChildren()) {
+                for (DataSnapshot ss : snapshot.getChildren()) {
 
                     studInstitute = ss.child("instituteData").getValue(Institute.class);
 
-                    if(studInstitute.owner.equals(Firebase.USER.getUid())){
+                    if (studInstitute.owner.equals(Firebase.USER.getUid())) {
                         break;
                     }
 

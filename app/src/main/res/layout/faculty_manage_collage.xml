@@ -1,10 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".faculty.manageCollage.ManageCollage">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:orientation="horizontal">
+
+        <Button
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:id="@+id/manage_users_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Manage members" />
+        <Button
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:id="@+id/show_users_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Manage Requests" />
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/make_institute_layout"
         android:layout_width="match_parent"
@@ -12,38 +35,105 @@
         android:layout_gravity="center"
         android:orientation="vertical"
         android:padding="17dp"
-        app:layout_constraintBottom_toBottomOf="parent"
 
-        app:layout_constraintTop_toTopOf="parent">
+        >
 
-        <EditText
-            android:id="@+id/collage_name_box"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/intitude_make_card_layout"
+            style="@style/Widget.Material3.CardView.Elevated"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10" />
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/make_institute"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:padding="20dp"
-            android:text="Make Institute"
-            android:visibility="visible" />
 
-        <Button
-            android:id="@+id/intitude_code"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/collage_name_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:ems="10"
+                    android:hint="Your Institute Name to create" />
+
+                <Button
+                    android:id="@+id/make_institute"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:text="Make Institute"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/textView4OR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="OR" />
+
+                <EditText
+                    android:id="@+id/join_as_FAC_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:ems="10"
+                    android:hint="Your Institute code to join" />
+
+                <Button
+                    android:id="@+id/join_as_FAC_bttn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:text="Join institute"
+                    android:visibility="visible" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/intitude_code_card"
+            style="@style/Widget.Material3.CardView.Elevated"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableEnd="@drawable/ic_share"
-            android:drawableTint="@color/teal_700"
-            android:padding="20dp"
-            android:text="NO Institude Made"
-            android:textColor="@color/teal_700"
-            android:visibility="gone" />
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/intitude_code"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:layout_weight="1"
+                    android:drawableEnd="@drawable/ic_share"
+                    android:drawableTint="@color/teal_700"
+                    android:padding="20dp"
+                    android:text="NO Institude Made"
+                    android:textColor="@color/teal_700"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/delete_institute"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:text="Delete" />
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
