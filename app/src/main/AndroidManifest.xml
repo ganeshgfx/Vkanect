@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vkanect">
         <activity
+            android:name=".faculty.frag.work.GiveWor"
+            android:exported="false" />
+        <activity
             android:name=".student.frag.handleCollage.HandleCollage"
             android:exported="false" />
         <activity

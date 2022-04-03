@@ -3,12 +3,20 @@ package lit.de.vkanect.faculty.frag;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lit.de.vkanect.R;
+import lit.de.vkanect.data.Work;
+import lit.de.vkanect.faculty.frag.work.WorkAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,11 +64,29 @@ public class F_WorkFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+RecyclerView workRowRecycler;
+    WorkAdapter workAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.faculty_fragment_work, container, false);
+        View view = inflater.inflate(R.layout.faculty_fragment_work, container, false);
+
+        workRowRecycler = view.findViewById(R.id.work_recycler);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        workRowRecycler.setLayoutManager(mLayoutManager);
+        workRowRecycler.setItemAnimator(new DefaultItemAnimator());
+
+        List<Work> list = new ArrayList<>();
+
+        list.add(new Work());
+        list.add(new Work());
+        list.add(new Work());
+        list.add(new Work());
+
+        workAdapter = new WorkAdapter(list);
+        workRowRecycler.setAdapter(workAdapter);
+
+        return view;
     }
 }
