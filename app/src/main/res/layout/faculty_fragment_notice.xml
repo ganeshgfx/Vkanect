@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -27,7 +27,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                >
 
                 <com.google.android.material.card.MaterialCardView
                     style="@style/Widget.Material3.CardView.Elevated"
@@ -49,12 +50,6 @@
                             android:layout_weight="1"
                             android:hint="Input notice here" />
 
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/fab_margin"
-                            android:layout_weight="1"
-                            android:hint="Input Link here" />
 
                         <Button
                             android:id="@+id/button"
@@ -62,7 +57,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/fab_margin"
-                            android:text="Add Immge" />
+                            android:text="Add Attachment" />
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
@@ -85,7 +80,7 @@
         android:id="@+id/handle_notice_fac"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

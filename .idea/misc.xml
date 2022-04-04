@@ -15,7 +15,7 @@
         <entry key="app/src/main/res/layout/activity_spash.xml" value="0.3307291666666667" />
         <entry key="app/src/main/res/layout/activity_student.xml" value="0.1" />
         <entry key="app/src/main/res/layout/content_manage_collage.xml" value="0.3328125" />
-        <entry key="app/src/main/res/layout/faculty_fragment_notice.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/faculty_fragment_notice.xml" value="0.5" />
         <entry key="app/src/main/res/layout/faculty_fragment_user.xml" value="0.3328125" />
         <entry key="app/src/main/res/layout/faculty_fragment_work.xml" value="0.375" />
         <entry key="app/src/main/res/layout/faculty_give_wor.xml" value="0.375" />
@@ -23,10 +23,11 @@
         <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_notice.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.32382246376811596" />
+        <entry key="app/src/main/res/layout/fragment_work.xml" value="0.375" />
         <entry key="app/src/main/res/layout/student_handle_collage.xml" value="0.23209169054441262" />
         <entry key="app/src/main/res/layout/student_notice_recycler_row.xml" value="0.375" />
         <entry key="app/src/main/res/layout/users_list_row.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/work_view_row.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/work_view_row.xml" value="0.1" />
       </map>
     </option>
   </component>

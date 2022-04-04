@@ -5,11 +5,12 @@
     android:layout_height="match_parent"
     android:id="@+id/stud_work"
     tools:context=".student.frag.WorkFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/work_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Work" />
-
+        android:layout_weight="1"
+        android:visibility="visible"
+        android:layout_gravity="center"
+       />
 </FrameLayout>

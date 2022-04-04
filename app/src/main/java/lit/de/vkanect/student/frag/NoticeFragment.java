@@ -77,7 +77,7 @@ public class NoticeFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    Institute mInstitute;
+
     RecyclerView recyclerView;
 
     @Override
@@ -120,7 +120,7 @@ public class NoticeFragment extends Fragment {
 
         }
     }
-
+    Institute mInstitute;
     void loadNotices(){
         instituteDB.child(mInstitute.getId()).child("notice").addValueEventListener(new ValueEventListener() {
 

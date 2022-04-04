@@ -88,7 +88,10 @@ public class Firebase {
                         Log.d(TAG, "onDataChange: " + error.getMessage());
                     }
                 };
-                databaseReference.child("Faculty").child(USER.getUid()).child("institute").addValueEventListener(listenerForSubFAC);
+                try {
+                    databaseReference.child("Faculty").child(USER.getUid()).child("institute").addValueEventListener(listenerForSubFAC);
+                }catch (Exception e){
+                }
             }
 
             @Override

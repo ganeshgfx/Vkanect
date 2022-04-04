@@ -1,14 +1,36 @@
 package lit.de.vkanect.student.frag;
 
+import static lit.de.vkanect.data.CONSTANTS.Firebase.STUD_getInstitude;
+import static lit.de.vkanect.data.CONSTANTS.Firebase.instituteDB;
+import static lit.de.vkanect.data.CONSTANTS.Firebase.studInstitute;
+
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import lit.de.vkanect.R;
+import lit.de.vkanect.data.Institute;
+import lit.de.vkanect.data.Massage;
+import lit.de.vkanect.faculty.frag.work.WorkAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,11 +78,74 @@ public class WorkFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    RecyclerView workRowRecycler;
+    WorkAdapter workAdapter;
+    LinearLayout linearLayout;
+    List<Massage> list;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_work, container, false);
+        View inflate = inflater.inflate(R.layout.fragment_work, container, false);
+
+        workRowRecycler = inflate.findViewById(R.id.work_recycler);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        workRowRecycler.setLayoutManager(mLayoutManager);
+        workRowRecycler.setItemAnimator(new DefaultItemAnimator());
+
+        list = new ArrayList<>();
+
+        loadInstitute();
+
+
+        return inflate;
+    }
+    void loadInstitute(){
+        try {
+            STUD_getInstitude();
+            mInstitute = studInstitute;
+            loadWorks();
+
+        }catch (Exception e){
+
+            Toast toast = Toast.makeText(getContext(), "Loading...", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // Do something after 5s = 5000ms
+                    loadInstitute();
+                }
+            }, 2500);
+
+        }
+    }
+    Institute mInstitute;
+    void loadWorks(){
+        instituteDB.child(mInstitute.getId()).child("work").addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                //Log.d(TAG, "onDataChange: "+snapshot.toString());
+                list.clear();
+                for (DataSnapshot data:snapshot.getChildren()) {
+                    Massage massage = data.getValue(Massage.class);
+                    list.add(massage);
+
+                }
+                workAdapter = new WorkAdapter(list);
+                workRowRecycler.setAdapter(workAdapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -109,11 +110,15 @@ boolean recyleViewVisiblity = true;
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        loadInstitute();
-
         LinearLayout linearLayout = rootView.findViewById(R.id.linearLayout);
 
         com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton btnSendNotice = rootView.findViewById(R.id.extended_fab_send_notice);
+
+        recyclerView.setVisibility(View.VISIBLE);
+        linearLayout.setVisibility(View.GONE);
+
+        loadInstitute();
+
         btnSendNotice.setOnClickListener(V->{
             if(recyleViewVisiblity){
                 recyclerView.setVisibility(View.GONE);
@@ -145,7 +150,13 @@ boolean recyleViewVisiblity = true;
     void sendNotice( String xText){
         try {
             FAC_getInstitude();
-            Firebase.instituteDB.child(institute.getId()).child("notice").push().setValue(new Massage(xText, FirebaseAuth.getInstance().getUid(),Massage.TYPE_NOTICE));
+            Massage value = new Massage(xText, FirebaseAuth.getInstance().getUid(), Massage.TYPE_NOTICE);
+
+            value
+                    .setSender(FirebaseAuth.getInstance().getCurrentUser().getDisplayName())
+            ;
+
+            Firebase.instituteDB.child(institute.getId()).child("notice").push().setValue(value);
 
         }catch (Exception e){
 

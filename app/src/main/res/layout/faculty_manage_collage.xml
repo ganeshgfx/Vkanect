@@ -41,6 +41,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/intitude_make_card_layout"
             style="@style/Widget.Material3.CardView.Elevated"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -100,7 +101,7 @@
             style="@style/Widget.Material3.CardView.Elevated"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone">
+            android:visibility="visible">
 
 
             <LinearLayout

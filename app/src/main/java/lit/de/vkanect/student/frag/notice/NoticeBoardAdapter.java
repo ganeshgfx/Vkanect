@@ -23,6 +23,7 @@ public class NoticeBoardAdapter extends RecyclerView.Adapter<NoticeBoardAdapter.
     private List<Massage> list;
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView text;
+        TextView sender_name;
         Button delete;
         MaterialCardView card;
         MyViewHolder(View view) {
@@ -30,6 +31,7 @@ public class NoticeBoardAdapter extends RecyclerView.Adapter<NoticeBoardAdapter.
             text = view.findViewById(R.id.message_text);
             delete = view.findViewById(R.id.button_delete_msg);
             card =  view.findViewById(R.id.card);
+            sender_name = view.findViewById(R.id.sender_name);
         }
     }
     public NoticeBoardAdapter(List<Massage> moviesList) {
@@ -46,9 +48,14 @@ public class NoticeBoardAdapter extends RecyclerView.Adapter<NoticeBoardAdapter.
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Massage msg = list.get(position);
+
+        //Log.d(TAG, "onBindViewHolder: "+msg.sender);
         holder.text.setText(msg.text);
+        holder.sender_name.setText(msg.sender);
         if(FACULTY){
             holder.delete.setVisibility(View.VISIBLE);
+        }else{
+            holder.delete.setVisibility(View.GONE);
         }
         //if(position==list.size()){ }
     }

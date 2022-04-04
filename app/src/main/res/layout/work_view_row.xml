@@ -17,24 +17,41 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/subject"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Subject" />
 
-            <TextView
-                android:id="@+id/Sender"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Subject" />
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/subject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Subject" />
+
+                <TextView
+                    android:id="@+id/Sender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Subject" />
+            </LinearLayout>
+
+            <Button
+                style="@style/Widget.Material3.Button.TextButton"
+                android:id="@+id/delete_work"
+               android:layout_gravity="end"
+                android:text="delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
 
         </LinearLayout>
 
@@ -53,7 +70,7 @@
                 app:srcCompat="@drawable/ic_book" />
 
             <Button
-                android:id="@+id/textView5"
+                android:id="@+id/workInfoText"
                 style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
