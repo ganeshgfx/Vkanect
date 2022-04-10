@@ -7,6 +7,7 @@ import static lit.de.vkanect.data.CONSTANTS.Firebase.studInstitute;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -79,7 +80,7 @@ public class NoticeFragment extends Fragment {
     }
 
     RecyclerView recyclerView;
-
+    ConstraintLayout constraintLayout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -87,6 +88,7 @@ public class NoticeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_notice, container, false);
         //noticeText = (TextView) root.findViewById(R.id.noticeText);
         recyclerView = root.findViewById(R.id.noticeRecycleView);
+        constraintLayout = root.findViewById(R.id.stud_notice);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -121,6 +123,7 @@ public class NoticeFragment extends Fragment {
         }
     }
     Institute mInstitute;
+
     void loadNotices(){
         instituteDB.child(mInstitute.getId()).child("notice").addValueEventListener(new ValueEventListener() {
 
@@ -140,7 +143,7 @@ public class NoticeFragment extends Fragment {
                     movieList.add(massage);
 
                 }
-                mAdapter = new NoticeBoardAdapter(movieList);
+                mAdapter = new NoticeBoardAdapter(movieList,mInstitute,getContext(),constraintLayout);
                 recyclerView.setAdapter(mAdapter);
 
             }

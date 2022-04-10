@@ -18,38 +18,55 @@
             android:layout_height="wrap_content"
             android:layout_gravity="top"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:paddingBottom="@dimen/fab_margin"
+          >
             <Button
                 android:id="@+id/user_info"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                style="@style/Widget.Material3.ExtendedFloatingActionButton.Icon.Surface"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_user"
                 android:drawableTint="@color/teal_700"
-                android:padding="20dp"
+
+                android:layout_marginStart="@dimen/fab_margin"
+                android:layout_marginEnd="@dimen/fab_margin"
+                android:layout_marginTop="@dimen/fab_margin"
+
                 android:text="user"
                 android:textColor="@color/teal_700" />
             <Button
                 android:id="@+id/manage_collage"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_add_collage"
                 android:drawableTint="@color/teal_700"
-                android:padding="20dp"
+                style="@style/Widget.Material3.ExtendedFloatingActionButton.Icon.Surface"
+
+                android:layout_marginStart="@dimen/fab_margin"
+                android:layout_marginEnd="@dimen/fab_margin"
+                android:layout_marginTop="@dimen/fab_margin"
+
                 android:text="Manage Collage"
                 android:textColor="@color/teal_700" />
             <Button
                 android:id="@+id/app_settigs"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                style="@style/Widget.Material3.ExtendedFloatingActionButton.Icon.Surface"
+
+                android:layout_marginStart="@dimen/fab_margin"
+                android:layout_marginEnd="@dimen/fab_margin"
+                android:layout_marginTop="@dimen/fab_margin"
+
+                android:layout_marginBottom="@dimen/fab_margin"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_twotone_settings_24"
                 android:drawableTint="@color/teal_700"
-                android:padding="20dp"
                 android:text="Settings"
                 android:textColor="@color/teal_700" />
         </LinearLayout>

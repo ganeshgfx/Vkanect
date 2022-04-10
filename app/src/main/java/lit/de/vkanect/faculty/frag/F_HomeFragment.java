@@ -1,12 +1,18 @@
 package lit.de.vkanect.faculty.frag;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import lit.de.vkanect.HOME.Attendees;
+import lit.de.vkanect.HOME.Fees;
+import lit.de.vkanect.HOME.Result;
+import lit.de.vkanect.HOME.TimeTable;
 import lit.de.vkanect.R;
+import lit.de.vkanect.faculty.manageCollage.ManageCollage;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,6 +66,14 @@ public class F_HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.faculty_fragment_home, container, false);
+        View view = inflater.inflate(R.layout.faculty_fragment_home, container, false);
+
+        view.findViewById(R.id.ttBtn).setOnClickListener(v->this.startActivity(new Intent(getActivity(), TimeTable.class)));
+        view.findViewById(R.id.atdBtn).setOnClickListener(v->this.startActivity(new Intent(getActivity(), Attendees.class)));
+        view.findViewById(R.id.passBtn).setOnClickListener(v->this.startActivity(new Intent(getActivity(), Result.class)));
+        view.findViewById(R.id.paisaBtn).setOnClickListener(v->this.startActivity(new Intent(getActivity(), Fees.class)));
+
+        return view;
     }
+
 }

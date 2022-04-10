@@ -178,6 +178,7 @@ public class F_WorkFragment extends Fragment {
                 list.clear();
                 for (DataSnapshot data:snapshot.getChildren()) {
                     Massage massage = data.getValue(Massage.class);
+                    massage.setKey(data.getKey());
                     list.add(massage);
 
                 }

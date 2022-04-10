@@ -14,10 +14,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vkanect">
         <activity
+            android:name=".HOME.Fees"
+            android:theme="@style/Theme.Vkanect.NoActionBar"
+            android:exported="false" />
+        <activity
+            android:name=".HOME.Result"
+            android:theme="@style/Theme.Vkanect.NoActionBar"
+            android:exported="false" />
+        <activity
+            android:name=".HOME.Attendees"
+            android:theme="@style/Theme.Vkanect.NoActionBar"
+            android:exported="false" />
+        <activity
+            android:name=".HOME.TimeTable"
+            android:theme="@style/Theme.Vkanect.NoActionBar"
+            android:exported="false" />
+        <activity
             android:name=".faculty.frag.work.GiveWor"
             android:exported="false" />
         <activity
             android:name=".student.frag.handleCollage.HandleCollage"
+            android:theme="@style/Theme.Vkanect.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".faculty.manageCollage.ManageCollage"

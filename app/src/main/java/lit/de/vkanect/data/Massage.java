@@ -14,6 +14,7 @@ public class Massage {
     public String type;
     public String img;
     public String tags[];
+    public String key;
 
     //for massage
     public Massage(String text,String sender,String type){
@@ -27,7 +28,10 @@ public class Massage {
     }
     //notice
 
-
+    public Massage setKey(String key) {
+        this.key = key;
+        return this;
+    }
     public Massage setText(String text) {
         this.text = text;
         return this;

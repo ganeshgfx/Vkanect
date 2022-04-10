@@ -1,6 +1,7 @@
 package lit.de.vkanect.student.frag;
 
 import static lit.de.vkanect.data.CONSTANTS.Firebase.STUD_getInstitude;
+import static lit.de.vkanect.data.CONSTANTS.Firebase.TAG;
 import static lit.de.vkanect.data.CONSTANTS.Firebase.instituteDB;
 import static lit.de.vkanect.data.CONSTANTS.Firebase.studInstitute;
 
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -134,8 +136,11 @@ public class WorkFragment extends Fragment {
                 list.clear();
                 for (DataSnapshot data:snapshot.getChildren()) {
                     Massage massage = data.getValue(Massage.class);
-                    list.add(massage);
+                    massage.setKey(data.getKey());
 
+                    //Log.d(TAG, "onDataChange: "+data.getKey());
+
+                    list.add(massage);
                 }
                 workAdapter = new WorkAdapter(list);
                 workRowRecycler.setAdapter(workAdapter);
