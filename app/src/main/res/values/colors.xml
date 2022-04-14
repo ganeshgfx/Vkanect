@@ -9,5 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#F50057</color>
 
+    <color name="icon">#424141</color>
+
     <color name="sideBar">#FFFFFF</color>
 </resources>

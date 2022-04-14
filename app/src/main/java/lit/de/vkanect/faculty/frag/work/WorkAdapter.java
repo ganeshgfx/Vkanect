@@ -29,9 +29,10 @@ import lit.de.vkanect.data.Massage;
 import lit.de.vkanect.data.Work;
 
 public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.MyViewHolder> {
-    private List<Massage> list;
     Context context;
     View v;
+    
+    private List<Massage> list;
     class MyViewHolder extends RecyclerView.ViewHolder {
         Button text;
         Button delete_work;
