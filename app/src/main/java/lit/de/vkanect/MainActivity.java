@@ -246,9 +246,18 @@ public class MainActivity extends AppCompatActivity {
 //                        }
                         User user = task.getResult().toObject(User.class);
                         if(user.getType().equals("Student"))
+                        {
                             startActivity(new Intent(MainActivity.this, student_activity.class));
+                        }
                         else
-                            startActivity(new Intent(MainActivity.this, faculty_activity.class));
+                        {
+                            if(false){
+                                startActivity(new Intent(MainActivity.this, FacultyForm.class));
+                            }else {
+                                startActivity(new Intent(MainActivity.this, faculty_activity.class));
+                            }
+
+                        }
                         hideLoading();
                         finish();
                         //Log.d("TAG", user.getType());
@@ -329,7 +338,6 @@ public class MainActivity extends AppCompatActivity {
                         hideLoading();
                         if (task.isSuccessful()) {
                             // email sent
-
 
                             // after email is sent just logout the user and finish this activity
 

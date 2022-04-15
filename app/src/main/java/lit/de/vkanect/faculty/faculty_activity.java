@@ -20,9 +20,7 @@ import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-
 import org.jetbrains.annotations.NotNull;
-
 import java.io.IOException;
 
 import lit.de.vkanect.R;
@@ -34,7 +32,6 @@ public class faculty_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faculty);
-
         //Log.d("TAG", "FAC");
 
         Firebase.FACULTY = true;

@@ -9,10 +9,12 @@
         <entry key="..\:/Users/Editing/Downloads/Vkanect/app/src/main/res/layout/activity_student.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Editing/Downloads/Vkanect/app/src/main/res/layout/faculty_fragment_user.xml" value="0.33" />
         <entry key="..\:/Users/Editing/Downloads/Vkanect/app/src/main/res/layout/fragment_user.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.325" />
         <entry key="app/src/main/res/drawable/ic_baseline_date_range_24.xml" value="0.3715" />
         <entry key="app/src/main/res/drawable/ic_notifications.xml" value="0.279" />
         <entry key="app/src/main/res/layout/activity_attendees.xml" value="0.37083333333333335" />
         <entry key="app/src/main/res/layout/activity_faculty.xml" value="0.2966485507246377" />
+        <entry key="app/src/main/res/layout/activity_faculty_form.xml" value="0.36770833333333336" />
         <entry key="app/src/main/res/layout/activity_fees.xml" value="0.37083333333333335" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2966485507246377" />
         <entry key="app/src/main/res/layout/activity_result.xml" value="0.37083333333333335" />
@@ -33,6 +35,8 @@
         <entry key="app/src/main/res/layout/fragment_work.xml" value="0.375" />
         <entry key="app/src/main/res/layout/student_handle_collage.xml" value="0.23209169054441262" />
         <entry key="app/src/main/res/layout/student_notice_recycler_row.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/tt_add_new_drop_list.xml" value="0.36770833333333336" />
+        <entry key="app/src/main/res/layout/tt_add_option.xml" value="0.36770833333333336" />
         <entry key="app/src/main/res/layout/tt_row.xml" value="0.37083333333333335" />
         <entry key="app/src/main/res/layout/users_list_row.xml" value="0.375" />
         <entry key="app/src/main/res/layout/work_view_row.xml" value="0.1" />

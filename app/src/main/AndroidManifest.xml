@@ -14,28 +14,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vkanect">
         <activity
-            android:name=".HOME.Fees"
+            android:name=".FacultyForm"
             android:theme="@style/Theme.Vkanect.NoActionBar"
             android:exported="false" />
+        <activity
+            android:name=".HOME.Fees"
+            android:exported="false"
+            android:theme="@style/Theme.Vkanect.NoActionBar" />
         <activity
             android:name=".HOME.Result"
-            android:theme="@style/Theme.Vkanect.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Vkanect.NoActionBar" />
         <activity
             android:name=".HOME.Attendees"
-            android:theme="@style/Theme.Vkanect.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Vkanect.NoActionBar" />
         <activity
             android:name=".HOME.TimeTable"
-            android:theme="@style/Theme.Vkanect.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Vkanect.NoActionBar" />
         <activity
             android:name=".faculty.frag.work.GiveWor"
             android:exported="false" />
         <activity
             android:name=".student.frag.handleCollage.HandleCollage"
-            android:theme="@style/Theme.Vkanect.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Vkanect.NoActionBar" />
         <activity
             android:name=".faculty.manageCollage.ManageCollage"
             android:exported="false"
@@ -43,7 +47,8 @@
             android:theme="@style/Theme.Vkanect.NoActionBar" />
         <activity
             android:name=".spash"
-            android:theme="@style/Theme.Vkanect.NoAcc">
+            android:theme="@style/Theme.Vkanect.NoActionBar"
+          >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

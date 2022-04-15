@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,9 +38,12 @@ import org.w3c.dom.Text;
 
 import java.util.Random;
 
+import lit.de.vkanect.FacultyForm;
 import lit.de.vkanect.R;
 import lit.de.vkanect.data.CONSTANTS.Firebase;
 import lit.de.vkanect.data.Institute;
+import lit.de.vkanect.faculty.faculty_activity;
+import lit.de.vkanect.spash;
 import lit.de.vkanect.student.frag.handleCollage.HandleCollage;
 
 public class ManageCollage extends AppCompatActivity {
@@ -94,6 +98,10 @@ public class ManageCollage extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             Log.d(TAG, "onSuccess: " + "done Faculty added");
+
+                                            saveLocally(inputCode);
+
+
                                         }
                                     });
 
@@ -217,6 +225,10 @@ public class ManageCollage extends AppCompatActivity {
                         instituteDB.child(mInstitute.id).removeValue()
                                 .addOnSuccessListener(unused -> Log.d(TAG, "onSuccess: DELETD"))
                                 .addOnFailureListener(e -> Log.d(TAG, "ERROr: DELET"));
+
+                        databaseReference.child("Faculty").child(USER.getUid()).child(
+                                "institute").removeValue();
+
                         Toast.makeText(getApplicationContext(), "Loading...", Toast.LENGTH_SHORT).show();
                     })
                     .setNegativeButton("No", null).show();
@@ -255,6 +267,10 @@ public class ManageCollage extends AppCompatActivity {
                                             Log.d(TAG, "onSuccess: institude created");
                                             databaseReference.child("Faculty").child(USER.getUid()).child(
                                                     "institute").setValue(mInstitute.id);
+                                            saveLocally(mInstitute.id);
+                                            startActivity(new Intent(ManageCollage.this,
+                                                    FacultyForm.class));
+                                            finish();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -307,6 +323,16 @@ public class ManageCollage extends AppCompatActivity {
                 Log.d("TAG", "EMPT");
             }
         });
+
+    }
+
+    private void saveLocally(String inputCode) {
+
+        SharedPreferences sharedPreferences =
+                getSharedPreferences("institute", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("code", inputCode);
+        editor.commit();
 
     }
 
